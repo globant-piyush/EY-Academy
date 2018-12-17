@@ -1,0 +1,51 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_myFirstVM_name": {
+            "value": "mySecondVM"
+        },
+        "networkInterfaces_myfirstvm966_name": {
+            "value": null
+        },
+        "publicIPAddresses_myFirstVM_ip_name": {
+            "value": null
+        },
+        "networkInterfaces_firstNetworkInf_name": {
+            "value": null
+        },
+        "networkInterfaces_secondNetworkInf_name": {
+            "value": null
+        },
+        "networkSecurityGroups_myFirstVM_nsg_name": {
+            "value": null
+        },
+        "storageAccounts_myfirstresourcegrpdiag_name": {
+            "value": null
+        },
+        "virtualNetworks_myFirstResourceGrp_vnet_name": {
+            "value": null
+        },
+        "securityRules_RDP_name": {
+            "value": null
+        },
+        "securityRules_HTTP_name": {
+            "value": null
+        },
+        "subnets_default_name": {
+            "value": null
+        },
+        "virtualMachines_myFirstVM_id": {
+            "value": null
+        },
+        "virtualMachines_myFirstVM_id_1": {
+            "value": null
+        },
+        "virtualMachines_myFirstVM_id_2": {
+            "value": null
+        },
+        "virtualMachines_myFirstVM_id_3": {
+            "value": null
+        }
+    }
+}
