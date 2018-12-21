@@ -1,0 +1,1 @@
+﻿Test-Connection -ComputerName google.com | Export-Csv "test_google_ping.csv"
