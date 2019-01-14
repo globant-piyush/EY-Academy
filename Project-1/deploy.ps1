@@ -26,10 +26,10 @@
 
 param(
  [string]
- $subscriptionId = "8807d000-3c1c-453f-851d-1e85be005948",
+ $subscriptionId = "00fc6d8c-f624-42a9-b509-c0559c5590ac",
 
  [string]
- $resourceGroupName = "cloud-shell-storage-centralindia",
+ $resourceGroupName = "myResourceGrp",
 
  [string]
  $resourceGroupLocation,
@@ -55,7 +55,7 @@ Function RegisterRP {
     )
 
     Write-Host "Registering resource provider '$ResourceProviderNamespace'";
-    Register-AzureRmResourceProvider -ProviderNamespace $ResourceProviderNamespace;
+    Register-AzResourceProvider -ProviderNamespace $ResourceProviderNamespace;
 }
 
 #******************************************************************************
@@ -66,11 +66,11 @@ $ErrorActionPreference = "Stop"
 
 # sign in
 Write-Host "Logging in...";
-Login-AzureRmAccount;
+Login-AzAccount;
 
 # select subscription
 Write-Host "Selecting subscription '$subscriptionId'";
-Select-AzureRmSubscription -SubscriptionID $subscriptionId;
+Select-AzSubscription -SubscriptionID $subscriptionId;
 
 # Register RPs
 $resourceProviders = @("microsoft.compute","microsoft.network");
@@ -82,7 +82,7 @@ if($resourceProviders.length) {
 }
 
 #Create or check for existing resource group
-$resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
+$resourceGroup = Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
 if(!$resourceGroup)
 {
     Write-Host "Resource group '$resourceGroupName' does not exist. To create a new resource group, please enter a location.";
@@ -90,7 +90,7 @@ if(!$resourceGroup)
         $resourceGroupLocation = Read-Host "resourceGroupLocation";
     }
     Write-Host "Creating resource group '$resourceGroupName' in location '$resourceGroupLocation'";
-    New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
+    New-AzResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
 }
 else{
     Write-Host "Using existing resource group '$resourceGroupName'";
@@ -99,7 +99,7 @@ else{
 # Start the deployment
 Write-Host "Starting deployment...";
 if(Test-Path $parametersFilePath) {
-    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
+    New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
 } else {
-    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath;
+    New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath;
 }
