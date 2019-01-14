@@ -3,7 +3,7 @@
 $vmName = 'vm1' 
 $resourceGroup = 'myResourceGrp'
  
-$vm = Get-AzureRmVm -ResourceGroup $resourceGroup -Name $vmName
+$vm = Get-AzVM -ResourceGroup $resourceGroup -Name $vmName
 
 $diskName = $vm.StorageProfile.OSDisk.Name
 $oldOsdisk = Get-AzDisk -ResourceGroupName $resourceGroup -DiskName $diskname
